@@ -17,6 +17,12 @@
 #property indicator_style1  STYLE_SOLID
 #property indicator_width1  1
 
+// Inputs
+input string            InpFont="Arial";         // Font 
+input int               InpFontSize=12;          // Font size 
+input color             InpColorHigh=clrBlue;    // Color High
+input color             InpColorLow=clrRed;      // Color Low
+
 // Buffers
 double crossLineBuffer[];
 
@@ -84,13 +90,13 @@ void OnChartEvent(const int id,
          ObjectSetInteger(0,"objPercent",OBJPROP_XDISTANCE,x+30);
          ObjectSetInteger(0,"objPercent",OBJPROP_YDISTANCE,y-30);
          if ( percent > 0 ) {
-            ObjectSetInteger(0,"objPercent",OBJPROP_COLOR,Blue);         
+            ObjectSetInteger(0,"objPercent",OBJPROP_COLOR,InpColorHigh);         
          } else {
-            ObjectSetInteger(0,"objPercent",OBJPROP_COLOR,Red);         
+            ObjectSetInteger(0,"objPercent",OBJPROP_COLOR,InpColorLow);         
          }
          ObjectSetString(0, "objPercent", OBJPROP_TEXT, DoubleToString(percent,_Digits) + "%");         
-         ObjectSetString(0,"objPercent",OBJPROP_FONT,"Arial");
-         ObjectSetInteger(0,"objPercent",OBJPROP_FONTSIZE,12);
+         ObjectSetString(0,"objPercent",OBJPROP_FONT,InpFont);
+         ObjectSetInteger(0,"objPercent",OBJPROP_FONTSIZE,InpFontSize);
          ObjectSetInteger(0,"objPercent",OBJPROP_SELECTABLE,false);         
          ChartRedraw(0);
       } 
