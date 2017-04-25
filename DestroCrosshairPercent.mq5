@@ -100,7 +100,7 @@ void OnChartEvent(const int id,
          crossLineBuffer[0] = price;
       }
       
-      if ( sparam == "0" ) {
+      if ( sparam != "1" ) {
          reset();
       }
    } else {
@@ -113,6 +113,7 @@ void reset() {
    crossLineBuffer[0] = 0;
    if(ObjectFind(0,"objPercent") >= 0) {
       ObjectDelete(0,"objPercent");
+      ChartRedraw(0);
    }
 }
 
